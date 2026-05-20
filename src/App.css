@@ -1,0 +1,32 @@
+.cardArea {
+    display: flex;
+}
+
+.productCard {
+    border: 10px solid black;
+    height: 400px;
+    width: 300px;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.imageContainer {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.productImage {
+    height: 50px;
+}
+
+.buyAmount {
+    width: 100px;
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
