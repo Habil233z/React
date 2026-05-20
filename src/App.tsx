@@ -58,7 +58,7 @@ function App() {
         <div className="buyAmount">
             <button className="increaseButton" onClick={() => increaseOnClick(product.id)}>+</button>
                 <p className= {"product"}>{product.count || 0}</p>
-            <button className="decreaseProduct" onClick={() => decreaseOnClick(product.id)}>-</button>
+            <button className={product.count >0 ? " decreaseButton": "hide"} onClick={() => decreaseOnClick(product.id)}>-</button>
         </div>
     </div>
       ))
