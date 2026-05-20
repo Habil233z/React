@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import Header from './components/header'
+import Cart from './components/cart'
 
 function App() {
   const [data, setData] = useState([
@@ -47,21 +49,47 @@ function App() {
       setData(decreaseCounter)
     }
 
+    const totalPrice = () => {
+      return data.reduce((sum, item) => {
+        const count = Number(item.count) || 0
+        const price = Number(item.productPrice) || 0
+        return sum + count *  price
+      }, 0)
+    }
+
+    const totalProduct = () => {
+      return data.reduce((sum, item) => {
+        const count = Number(item.count) || 0
+        return sum + count
+      }, 0)
+    }
+
     return (
-      data.map(product => (
-      <div className="productCard">
-        <div className="imageContainer">
-            <img src={product.imageSource} className="productImage" />
-        </div>
-        <h4>{product.productName}</h4>
-        <h3>RP {product.productPrice}</h3>
-        <div className="buyAmount">
-            <button className="increaseButton" onClick={() => increaseOnClick(product.id)}>+</button>
-                <p className= {"product"}>{product.count || 0}</p>
-            <button className={product.count >0 ? " decreaseButton": "hide"} onClick={() => decreaseOnClick(product.id)}>-</button>
-        </div>
+      <div>
+        <Header />
+
+        <div className='cardArea'>
+        {data.map(product => (
+          <div className={`productCard ${product.count > 0 ? "added": ""}`}>
+            <div className="imageContainer">
+              <img src={product.imageSource} className="productImage" />
+            </div>
+              <h4>{product.productName}</h4>
+              <h3>RP {product.productPrice}</h3>
+            <div className="buyAmount">
+              <button className="increaseButton" onClick={() => increaseOnClick(product.id)}>+</button>
+                  <p className= {"product"}>{product.count || 0}</p>
+              <button className={product.count >0 ? " decreaseButton": "hide"} onClick={() => decreaseOnClick(product.id)}>-</button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className={`cart ${totalPrice() === 0 ? "hide": ""}`}>
+        <h2>Total price: {totalPrice()}</h2>
+        <h2>Total product: {totalProduct()}</h2>
+      </div>
     </div>
-      ))
     )
 }
 
