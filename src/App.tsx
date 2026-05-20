@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './App.css'
 import Header from './components/header'
-import Cart from './components/cart'
 
 function App() {
   const [data, setData] = useState([
